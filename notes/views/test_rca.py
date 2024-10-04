@@ -27,3 +27,9 @@ def main_func(data):
 def get_qs_data(qs):
     qs = qs[0]
     return qs
+
+def return_data_value():
+    data = {
+        "name":"Preeti"
+    },
+    return data
