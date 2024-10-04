@@ -23,7 +23,7 @@ rules:
   - id: check-hardcoded-secrets
     message: "Avoid hardcoding sensitive information in settings. Use environment variables."
     rule:
-      regex: "SECRET_KEY\\s*=\\s*[\'\\'][^\'\']*[\'\']"
+      regex: "SECRET_KEY\\s*=\\s*[\'\\'][^\\'\\']*[\\'\\']"
       kind: assignment
       severity: error
 
@@ -39,7 +39,7 @@ rules:
   - id: check-url-namespace
     message: "Ensure each URL pattern has a namespace."
     rule:
-      regex: "(url|path)\(.*,\\s*name=.*"
+      regex: "(url|path)\\(.*,\\s*name=.*"
       kind: call_expression
       severity: warning
 
@@ -67,7 +67,7 @@ rules:
   - id: check-form-validation
     message: "Form validation should be handled correctly."
     rule:
-      regex: "\.is_valid\(\)"
+      regex: "\\.is_valid\\(\\)"
       kind: call_expression
       severity: error
 
@@ -75,7 +75,7 @@ rules:
   - id: avoid-star-import
     message: "Avoid using '*' in imports."
     rule:
-      regex: "from\s+\S+\s+import\s+\*"
+      regex: "from\\s+\\S+\\s+import\\s+\\*"
       kind: import_statement
       severity: warning
 
