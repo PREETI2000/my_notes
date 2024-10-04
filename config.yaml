@@ -23,7 +23,7 @@ rules:
   - id: check-hardcoded-secrets
     message: "Avoid hardcoding sensitive information in settings. Use environment variables."
     rule:
-      regex: "SECRET_KEY\\s*=\\s*[\'\\'][^\\'\\']*[\\'\\']"
+      regex: "SECRET_KEY\\s*=\\s*[\\'\\'][^\\'\\']*[\\'\\']"
       kind: assignment
       severity: error
 
