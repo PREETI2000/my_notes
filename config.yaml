@@ -23,7 +23,7 @@ rules:
   - id: check-hardcoded-secrets
     message: "Avoid hardcoding sensitive information in settings. Use environment variables."
     rule:
-      regex: "SECRET_KEY\s*=\s*[\"\'][^\"\']*[\"\']"
+      regex: "SECRET_KEY\\s*=\\s*[\'\\'][^\'\']*[\'\']"
       kind: assignment
       severity: error
 
@@ -31,7 +31,7 @@ rules:
   - id: check-csrf-middleware
     message: "CSRF middleware should be included in settings."
     rule:
-      regex: "MIDDLEWARE\s*=\s*\[.*\'django.middleware.csrf.CsrfViewMiddleware\'.*\]"
+      regex: "MIDDLEWARE\\s*=\\s*\\[([^\\]]|\\n)*'django\\.middleware\\.csrf\\.CsrfViewMiddleware'([^\\]]|\\n)*\\]"
       kind: list
       severity: error
 
@@ -39,7 +39,7 @@ rules:
   - id: check-url-namespace
     message: "Ensure each URL pattern has a namespace."
     rule:
-      regex: "url\(.*, namespace="
+      regex: "(url|path)\(.*,\\s*name=.*"
       kind: call_expression
       severity: warning
 
@@ -53,12 +53,16 @@ rules:
 
   # Detect usage of print statements (to avoid in production)
   - id: detect-print-statements
-    message: "Avoid using print statements in Django applications."
+    message: "Avoid using print statements in Django applications, except in management commands or local development settings."
     rule:
-      regex: "print\("
+      regex: "print\\("
       kind: call_expression
       severity: warning
+      exclude_paths:
+        - "*/management/commands/*"
+        - "*/settings/local.py"
 
+    
   # Ensure proper form validation in views
   - id: check-form-validation
     message: "Form validation should be handled correctly."
@@ -77,29 +81,31 @@ rules:
 
 # Custom settings for CodeRabbit to enforce Django project structure and best practices
 project_structure:
-  - path: "app/"
-    description: "Django apps should reside in the app/ directory."
+  - path: "*/"
+    description: "Django apps should be separate directories at the project root."
     severity: error
 
   - path: "templates/"
     description: "HTML templates should be organized in the templates/ directory."
-    severity: warning
+    severity: error
 
   - path: "static/"
     description: "Static files (CSS, JS) should be in the static/ directory."
-    severity: info
+    severity: warning
 
 # Additional best practices
 best_practices:
   - id: use-environment-variables
     message: "Environment variables should be used for sensitive data like the database URL, secret key, etc."
     severity: error
-    suggested_fix: "Use os.getenv() to retrieve values from environment variables."
+    suggested_fix: "Use os.environ.get('VAR_NAME', 'default_value') to retrieve values from environment variables. Consider using django-environ for more robust environment variable handling."
+
 
   - id: use-debug-false
     message: "DEBUG mode should be set to False in production."
     severity: error
-    suggested_fix: "Ensure DEBUG=False in production settings."
+    suggested_fix: "Set DEBUG = os.environ.get('DEBUG', 'False') == 'True' in settings.py to ensure it's False by default in production."
+
 
   - id: use-static-root
     message: "STATIC_ROOT must be set for collecting static files in production."
@@ -109,4 +115,5 @@ best_practices:
   - id: use-aliases-for-urls
     message: "Use reverse() or {% url %} template tag instead of hardcoding URLs."
     severity: warning
-    suggested_fix: "Refactor code to use Django's reverse() function or {% url %} in templates."
+    suggested_fix: "Refactor code to use Django's reverse() function in views, {% url %} in templates, and implement get_absolute_url() method on models for object-specific URLs."
+
