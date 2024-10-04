@@ -23,3 +23,7 @@ def main_func(data):
     if test_rewards():
         return True
     return False
+
+def get_qs_data(qs):
+    qs = qs[0]
+    return qs
