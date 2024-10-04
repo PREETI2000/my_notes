@@ -1,7 +1,7 @@
 from notes.models import NotesUser
 
 
-def test(data):
+def test_rewards(data):
     rewards = data["reward"]
     if rewards > 10:
         print("rewards is greater than 10")
@@ -16,5 +16,10 @@ def test_keyerror(user_data):
     rewards = user_data.get("days", None)
     if rewards > 30:
         print("user is eligible")
+        return True
+    return False
+
+def main_func(data):
+    if test_rewards():
         return True
     return False
