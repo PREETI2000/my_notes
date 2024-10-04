@@ -1,6 +1,6 @@
 from notes.models import NotesUser
 
-
+STORY_SHARE_MESSAGE_SUFFIX = "hello"
 def test_rewards(data):
     rewards = data["reward"]
     if rewards > 10:
@@ -33,3 +33,8 @@ def return_data_value():
         "name":"Preeti"
     },
     return data
+
+
+def get_story_text(story_info):
+    story_share_text = story_info.get('story_title') + "\n" + STORY_SHARE_MESSAGE_SUFFIX
+    return story_share_text
