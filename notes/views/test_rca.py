@@ -24,8 +24,10 @@ def main_func(data):
         return True
     return False
 
-def get_qs_data(qs):
-    qs = qs[0]
+def get_qs_data(qs, data_key):
+    gs = []
+    id data_key:
+        qs = qs[0]
     return qs
 
 def return_data_value():
@@ -36,5 +38,8 @@ def return_data_value():
 
 
 def get_story_text(story_info):
-    story_share_text = story_info.get('story_title') + "\n" + STORY_SHARE_MESSAGE_SUFFIX
+    ds = get_qs_data(qs, data=story_info)
+    if ds:
+        story_share_text = story_info.get('story_title') + "\n" + STORY_SHARE_MESSAGE_SUFFIX
+        print("note user exists")
     return story_share_text
