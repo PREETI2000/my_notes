@@ -25,8 +25,8 @@ def main_func(data):
     return False
 
 def get_qs_data(qs, data_key):
-    gs = []
-    id data_key:
+    qs = []
+    if data_key:
         qs = qs[0]
     return qs
 
