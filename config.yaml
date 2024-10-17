@@ -19,6 +19,14 @@ rules:
       kind: command
       severity: warning
 
+# Check for variable names 
+  - id: check-variables-names
+    message: "Ensure the variable defined have proper name format and do not use varialble names like x, y, a,b"
+    rule:
+      regex: "makemigrations"
+      kind: command
+      severity: warning
+
   # Check for hardcoded secrets
   - id: check-hardcoded-secrets
     message: "Avoid hardcoding sensitive information in settings. Use environment variables."

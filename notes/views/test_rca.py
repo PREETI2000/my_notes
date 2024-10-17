@@ -42,4 +42,5 @@ def get_story_text(story_info):
     if ds:
         story_share_text = story_info.get('story_title') + "\n" + STORY_SHARE_MESSAGE_SUFFIX
         print("note user exists")
-    return story_share_text
+    x = True if ds else False
+    return x
