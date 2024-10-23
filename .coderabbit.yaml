@@ -21,10 +21,29 @@ reviews:
       instructions: |
         - Ensure all functions have proper docstrings.
         - Verify that variable names are descriptive.
+  - paths: ["notes/views/*.py"]
+      instructions: |
+        - check all places where there are syntax error 
+        - predict the future code failure and comment on the code.
   - paths: ["tests/**/*.py"]
       instructions: |
         - Check that all test cases cover edge scenarios.
         - Make sure mocking is used appropriately.
+  review_instructions:
+  - paths: ["**/*.py"]
+    instructions: |
+      - Ensure all code follows PEP 8 style guidelines.
+      - Verify that imports are organized and unnecessary imports are removed.
+      - Check for proper use of Django models, views.
+      - Ensure that database queries are optimized and use Django ORM effectively.
+      - Validate that all user inputs are properly sanitized to prevent security vulnerabilities like SQL injection and XSS attacks.
+      - Confirm that default values and null constraints are appropriately set in models.
+      - Review the use of Django's built-in authentication and authorization mechanisms.
+      - Ensure middleware is appropriately used and configured.
+      - Check for proper error handling and logging practices.
+      - Verify that static and media files are correctly managed.
+      -Verify the proper use of asynchronous tasks with Celery or other task queues.
+      - Review REST API endpoints for correct usage of Django REST Framework serializers and viewsets.
   abort_on_close: true
   auto_review:
     enabled: true
