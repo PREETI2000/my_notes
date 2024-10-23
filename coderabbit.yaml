@@ -17,7 +17,7 @@ chat:
 
 # config.yaml for CodeRabbit
 project:
-  name: django_project
+  name: my_notes
 
 language:
   - python
