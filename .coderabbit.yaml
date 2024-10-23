@@ -3,9 +3,9 @@ tone_instructions: ''
 early_access: false
 enable_free_tier: true
 reviews:
-  profile: chill
+  profile: strict
   request_changes_workflow: false
-  high_level_summary: true
+  high_level_summary: false
   high_level_summary_placeholder: '@coderabbitai summary'
   auto_title_placeholder: '@coderabbitai'
   review_status: true
@@ -16,7 +16,15 @@ reviews:
   changed_files_summary: true
   labeling_instructions: []
   path_filters: []
-  path_instructions: []
+  path_instructions: 
+  - paths: ["notes/views/*.py"]
+      instructions: |
+        - Ensure all functions have proper docstrings.
+        - Verify that variable names are descriptive.
+  - paths: ["tests/**/*.py"]
+      instructions: |
+        - Check that all test cases cover edge scenarios.
+        - Make sure mocking is used appropriately.
   abort_on_close: true
   auto_review:
     enabled: true
@@ -29,7 +37,7 @@ reviews:
     shellcheck:
       enabled: true
     ruff:
-      enabled: true
+      enabled: false
     markdownlint:
       enabled: true
     github-checks:
