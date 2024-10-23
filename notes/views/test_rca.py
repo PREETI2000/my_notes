@@ -51,3 +51,7 @@ def get_notes():
     return y
 
     
+def get_active_notes():
+    x = NotesUser.objects.filter(is_active=True)
+    y = x[0].name
+    return y
