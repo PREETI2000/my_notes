@@ -44,3 +44,10 @@ def get_story_text(story_info):
         print("note user exists")
     x = True if ds else False
     return x
+
+def get_notes():
+    x = NotesUser.objects.filter(name="preeti")
+    y = x[0].name
+    return y
+
+    
