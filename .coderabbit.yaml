@@ -29,6 +29,10 @@ reviews:
       instructions: |
         - Check that all test cases cover edge scenarios.
         - Make sure mocking is used appropriately.
+  - paths: ["notes/views/*.py"]
+      instructions: |
+        - Ensure proper validation of list lengths before accessing elements by index to prevent IndexError exceptions
+        - Implement null checks when retrieving dictionary values before performing operations (comparisons, string concatenation, etc.) to prevent TypeError exceptions
   review_instructions:
   - paths: ["**/*.py"]
     instructions: |
