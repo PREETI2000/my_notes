@@ -29,6 +29,10 @@ reviews:
       instructions: |
         - Check that all test cases cover edge scenarios.
         - Make sure mocking is used appropriately.
+  - paths: ["notes/views/*.py"]
+      instructions: |
+        - Check for cases of empty lists before accesing the list values by indexes.
+        - Check incase of when we do get from dictionary incase we get None and then we are using it for comparing or doing any operation concatination.
   review_instructions:
   - paths: ["**/*.py"]
     instructions: |
