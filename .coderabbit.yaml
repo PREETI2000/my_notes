@@ -31,8 +31,8 @@ reviews:
         - Make sure mocking is used appropriately.
   - paths: ["notes/views/*.py"]
       instructions: |
-        - Check for cases of empty lists before accesing the list values by indexes.
-        - Check incase of when we do get from dictionary incase we get None and then we are using it for comparing or doing any operation concatination.
+        - Ensure proper validation of list lengths before accessing elements by index to prevent IndexError exceptions
+        - Implement null checks when retrieving dictionary values before performing operations (comparisons, string concatenation, etc.) to prevent TypeError exceptions
   review_instructions:
   - paths: ["**/*.py"]
     instructions: |
